@@ -1,0 +1,5 @@
+{
+  "name": "Fanciaga",
+  "description": "A subscription platform where users can follow models, access exclusive content, and chat directly. Features model profiles, a homepage with discoverable creators, a full-featured inbox, and user settings.",
+  "requestFramePermissions": []
+}
