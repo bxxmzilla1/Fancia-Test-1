@@ -12,7 +12,7 @@
   ],
   "headers": [
     {
-      "source": "/service-worker.js",
+      "source": "/sw.js",
       "headers": [
         {
           "key": "Cache-Control",
@@ -21,7 +21,7 @@
       ]
     },
     {
-      "source": "/workbox-*.js",
+      "source": "/service-worker.js",
       "headers": [
         {
           "key": "Cache-Control",
