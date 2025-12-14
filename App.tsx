@@ -2,7 +2,9 @@
 import React, { useState } from 'react';
 import { HashRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './context/ThemeContext';
+import { InstallPromptProvider } from './context/InstallPromptContext';
 import Header from './components/Header';
+import InstallButton from './components/InstallButton';
 import Home from './pages/Home';
 import Inbox from './pages/Inbox';
 import Settings from './pages/Settings';
@@ -158,6 +160,7 @@ const AppContent: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-black text-gray-900 dark:text-gray-100">
       {!isAuthPage && <Header totalUnreadCount={totalUnreadCount} />}
+      {!isAuthPage && <InstallButton variant="banner" />}
       <main className={isAuthPage ? '' : 'pt-20 pb-24 md:pb-8 px-2 sm:px-4 lg:px-6 max-w-7xl mx-auto'}>
         <Routes>
           <Route path="/" element={<Auth />} />
@@ -202,9 +205,11 @@ const AppContent: React.FC = () => {
 const App: React.FC = () => {
   return (
     <ThemeProvider>
-      <HashRouter>
-        <AppContent />
-      </HashRouter>
+      <InstallPromptProvider>
+        <HashRouter>
+          <AppContent />
+        </HashRouter>
+      </InstallPromptProvider>
     </ThemeProvider>
   );
 };

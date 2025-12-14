@@ -2,6 +2,7 @@
 import React from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
+import InstallButton from './InstallButton';
 import { HomeIcon, InboxIcon, Cog6ToothIcon, BellIcon, PlusCircleIcon } from './icons/Icons';
 
 interface HeaderProps {
@@ -40,6 +41,7 @@ const Header: React.FC<HeaderProps> = ({ totalUnreadCount }) => {
                         <NavLink to="/settings" className={({ isActive }) => `${navLinkClasses} ${isActive ? activeLinkClasses : inactiveLinkClasses}`}>
                             Settings
                         </NavLink>
+                        <InstallButton />
                         <ThemeToggle />
                     </div>
                 </nav>
@@ -47,7 +49,7 @@ const Header: React.FC<HeaderProps> = ({ totalUnreadCount }) => {
 
             {/* Mobile Nav */}
             <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white/90 dark:bg-black/90 backdrop-blur-sm border-t border-gray-200 dark:border-gray-800 z-50">
-                <div className="flex justify-around items-center h-16">
+                <div className="flex justify-around items-center h-16 px-2">
                     <NavLink to="/home" className={({ isActive }) => `${navLinkClasses} ${isActive ? activeLinkClasses : inactiveLinkClasses}`}>
                         <HomeIcon className="w-7 h-7"/>
                     </NavLink>
@@ -70,6 +72,9 @@ const Header: React.FC<HeaderProps> = ({ totalUnreadCount }) => {
                     <NavLink to="/settings" className={({ isActive }) => `${navLinkClasses} ${isActive ? activeLinkClasses : inactiveLinkClasses}`}>
                         <Cog6ToothIcon className="w-7 h-7"/>
                     </NavLink>
+                    <div className="flex items-center">
+                        <InstallButton variant="icon" />
+                    </div>
                 </div>
             </nav>
         </>

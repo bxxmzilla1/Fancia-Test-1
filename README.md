@@ -12,9 +12,13 @@ View your app in AI Studio: https://ai.studio/apps/drive/1JI7hykEvJHsToj06_xCP4v
 
 - ✨ Progressive Web App (PWA) support
 - 📱 Installable on mobile and desktop devices
+- 🖥️ Native desktop app experience with window controls
+- 📲 One-tap install button for easy installation
 - 🔄 Offline functionality with service workers
 - 🎨 Dark mode support
 - ⚡ Fast and optimized with Vite
+- 🎯 App shortcuts for quick navigation
+- 📸 Screenshot support for app stores
 
 ## Run Locally
 
@@ -107,19 +111,31 @@ Make sure to add your environment variables in Vercel:
 This app is configured as a Progressive Web App with:
 
 - **Service Worker**: Enables offline functionality and caching
-- **Web App Manifest**: Allows installation on devices
+- **Web App Manifest**: Allows installation on devices with native app-like experience
 - **App Icons**: Automatically generated icons for various devices
 - **Offline Support**: Caches assets for offline access
+- **Install Prompt**: Smart install button that appears when the app can be installed
+- **App Shortcuts**: Quick access to Home, Inbox, and Upload from the app icon
+- **Native Look**: Standalone display mode for a native app experience
 
 ### Installing the PWA
 
+The app includes an **Install Button** in the header that automatically appears when installation is available.
+
 **On Mobile:**
-- iOS Safari: Tap the Share button → "Add to Home Screen"
-- Android Chrome: Tap the menu → "Add to Home Screen" or "Install App"
+- **iOS Safari**: 
+  - Tap the Install button in the header, or
+  - Tap the Share button (square with arrow) → "Add to Home Screen"
+- **Android Chrome**: 
+  - Tap the Install button in the header, or
+  - Tap the menu → "Add to Home Screen" or "Install App"
 
 **On Desktop:**
-- Chrome/Edge: Click the install icon in the address bar
-- The app will appear in your applications menu
+- **Chrome/Edge**: 
+  - Click the Install button in the header, or
+  - Click the install icon in the address bar
+- The app will appear in your applications menu and can be launched like a native app
+- Runs in a standalone window without browser UI for a native experience
 
 ## Project Structure
 

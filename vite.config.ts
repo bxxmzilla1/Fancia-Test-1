@@ -23,10 +23,20 @@ export default defineConfig(({ mode }) => {
             theme_color: '#14b8a6',
             background_color: '#ffffff',
             display: 'standalone',
-            orientation: 'portrait',
+            display_override: ['window-controls-overlay', 'standalone', 'minimal-ui'],
+            orientation: 'portrait-primary',
             scope: '/',
             start_url: '/',
+            categories: ['social', 'entertainment'],
+            lang: 'en',
+            dir: 'ltr',
+            prefer_related_applications: false,
             icons: [
+              {
+                src: 'pwa-64x64.png',
+                sizes: '64x64',
+                type: 'image/png'
+              },
               {
                 src: 'pwa-192x192.png',
                 sizes: '192x192',
@@ -35,13 +45,53 @@ export default defineConfig(({ mode }) => {
               {
                 src: 'pwa-512x512.png',
                 sizes: '512x512',
-                type: 'image/png'
+                type: 'image/png',
+                purpose: 'any'
               },
               {
-                src: 'pwa-512x512.png',
+                src: 'maskable-icon-512x512.png',
                 sizes: '512x512',
                 type: 'image/png',
-                purpose: 'any maskable'
+                purpose: 'maskable'
+              }
+            ],
+            shortcuts: [
+              {
+                name: 'Home',
+                short_name: 'Home',
+                description: 'Go to home page',
+                url: '/#/home',
+                icons: [{ src: 'pwa-192x192.png', sizes: '192x192' }]
+              },
+              {
+                name: 'Inbox',
+                short_name: 'Inbox',
+                description: 'View messages',
+                url: '/#/inbox',
+                icons: [{ src: 'pwa-192x192.png', sizes: '192x192' }]
+              },
+              {
+                name: 'Upload',
+                short_name: 'Upload',
+                description: 'Upload new content',
+                url: '/#/upload',
+                icons: [{ src: 'pwa-192x192.png', sizes: '192x192' }]
+              }
+            ],
+            screenshots: [
+              {
+                src: 'screenshot-wide.png',
+                sizes: '1280x720',
+                type: 'image/png',
+                form_factor: 'wide',
+                label: 'Fanciaga App Screenshot'
+              },
+              {
+                src: 'screenshot-narrow.png',
+                sizes: '750x1334',
+                type: 'image/png',
+                form_factor: 'narrow',
+                label: 'Fanciaga App Screenshot'
               }
             ]
           },
