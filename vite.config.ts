@@ -14,84 +14,29 @@ export default defineConfig(({ mode }) => {
         react(),
         VitePWA({
           registerType: 'autoUpdate',
-          injectRegister: 'auto',
-          includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
+          includeAssets: ['favicon.ico', 'icon.png', 'icon.svg'],
           manifest: {
             name: 'Fanciaga',
             short_name: 'Fanciaga',
-            description: 'Fanciaga - AI Studio App',
+            description: 'Connect, chat, and share with Fanciaga - Your social platform',
             theme_color: '#14b8a6',
             background_color: '#ffffff',
             display: 'standalone',
-            display_override: ['window-controls-overlay', 'standalone', 'minimal-ui'],
-            orientation: 'portrait-primary',
+            orientation: 'portrait',
             scope: '/',
             start_url: '/',
-            categories: ['social', 'entertainment'],
-            lang: 'en',
-            dir: 'ltr',
-            prefer_related_applications: false,
             icons: [
               {
-                src: 'pwa-64x64.png',
-                sizes: '64x64',
-                type: 'image/png'
-              },
-              {
-                src: 'pwa-192x192.png',
+                src: '/icon-192x192.png',
                 sizes: '192x192',
-                type: 'image/png'
+                type: 'image/png',
+                purpose: 'any maskable'
               },
               {
-                src: 'pwa-512x512.png',
+                src: '/icon-512x512.png',
                 sizes: '512x512',
                 type: 'image/png',
-                purpose: 'any'
-              },
-              {
-                src: 'maskable-icon-512x512.png',
-                sizes: '512x512',
-                type: 'image/png',
-                purpose: 'maskable'
-              }
-            ],
-            shortcuts: [
-              {
-                name: 'Home',
-                short_name: 'Home',
-                description: 'Go to home page',
-                url: '/#/home',
-                icons: [{ src: 'pwa-192x192.png', sizes: '192x192' }]
-              },
-              {
-                name: 'Inbox',
-                short_name: 'Inbox',
-                description: 'View messages',
-                url: '/#/inbox',
-                icons: [{ src: 'pwa-192x192.png', sizes: '192x192' }]
-              },
-              {
-                name: 'Upload',
-                short_name: 'Upload',
-                description: 'Upload new content',
-                url: '/#/upload',
-                icons: [{ src: 'pwa-192x192.png', sizes: '192x192' }]
-              }
-            ],
-            screenshots: [
-              {
-                src: 'screenshot-wide.png',
-                sizes: '1280x720',
-                type: 'image/png',
-                form_factor: 'wide',
-                label: 'Fanciaga App Screenshot'
-              },
-              {
-                src: 'screenshot-narrow.png',
-                sizes: '750x1334',
-                type: 'image/png',
-                form_factor: 'narrow',
-                label: 'Fanciaga App Screenshot'
+                purpose: 'any maskable'
               }
             ]
           },
@@ -99,7 +44,7 @@ export default defineConfig(({ mode }) => {
             globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
             runtimeCaching: [
               {
-                urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
+                urlPattern: /^https:\/\/fonts\.(?:googleapis|gstatic)\.com\/.*/i,
                 handler: 'CacheFirst',
                 options: {
                   cacheName: 'google-fonts-cache',
@@ -113,20 +58,31 @@ export default defineConfig(({ mode }) => {
                 }
               },
               {
-                urlPattern: /^https:\/\/cdn\.tailwindcss\.com\/.*/i,
-                handler: 'CacheFirst',
+                urlPattern: /^https:\/\/aistudiocdn\.com\/.*/i,
+                handler: 'StaleWhileRevalidate',
                 options: {
-                  cacheName: 'tailwind-cache',
+                  cacheName: 'cdn-cache',
+                  expiration: {
+                    maxEntries: 50,
+                    maxAgeSeconds: 60 * 60 * 24 * 7 // 7 days
+                  }
+                }
+              },
+              {
+                urlPattern: /^https:\/\/cdn\.tailwindcss\.com\/.*/i,
+                handler: 'StaleWhileRevalidate',
+                options: {
+                  cacheName: 'tailwind-cdn-cache',
                   expiration: {
                     maxEntries: 10,
-                    maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
+                    maxAgeSeconds: 60 * 60 * 24 * 30 // 30 days
                   }
                 }
               }
             ]
           },
           devOptions: {
-            enabled: true
+            enabled: false
           }
         })
       ],

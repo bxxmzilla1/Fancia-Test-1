@@ -4,162 +4,213 @@
 
 # Fanciaga - Progressive Web App
 
-A modern Progressive Web App (PWA) built with React, Vite, and TypeScript. This app can be installed on devices and works offline.
+Fanciaga is a modern social platform built with React, TypeScript, and Vite. This app is configured as a Progressive Web App (PWA) with offline support, installable on mobile and desktop devices.
 
 View your app in AI Studio: https://ai.studio/apps/drive/1JI7hykEvJHsToj06_xCP4vHMObC8q41A
 
-## Features
+## ✨ Features
 
-- ✨ Progressive Web App (PWA) support
-- 📱 Installable on mobile and desktop devices
-- 🖥️ Native desktop app experience with window controls
-- 📲 One-tap install button for easy installation
-- 🔄 Offline functionality with service workers
-- 🎨 Dark mode support
-- ⚡ Fast and optimized with Vite
-- 🎯 App shortcuts for quick navigation
-- 📸 Screenshot support for app stores
+### Progressive Web App (PWA)
+- **Offline Support**: Works offline with service worker caching
+- **Installable**: Add to home screen on mobile and desktop devices
+- **Auto-updates**: Service worker automatically updates when new versions are available
+- **App-like Experience**: Standalone display mode for native app feel
+- **Optimized Caching**: Smart caching strategy for fonts, CDN resources, and static assets
 
-## Run Locally
+### Core Features
+- Modern React 19 with TypeScript
+- Dark mode support
+- Responsive design
+- Social media functionality (chat, posts, profiles)
+- Real-time messaging
 
-**Prerequisites:** Node.js (v16 or higher)
+## 🚀 Installation
 
-1. Install dependencies:
+### Prerequisites
+- Node.js (v18 or higher recommended)
+- npm or yarn
+
+### Setup
+
+1. **Install dependencies:**
    ```bash
    npm install
    ```
-
-2. Set the `GEMINI_API_KEY` in `.env.local` to your Gemini API key:
+   
+   If you encounter dependency conflicts, use:
    ```bash
-   GEMINI_API_KEY=your_api_key_here
+   npm install --legacy-peer-deps
    ```
 
-3. Run the development server:
+2. **Set up environment variables:**
+   
+   Create a `.env.local` file in the root directory:
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   ```
+
+3. **Generate PWA Icons:**
+   
+   Before building, you need to generate the required PNG icons:
+   - Open `public/generate-icons.html` in your browser
+   - Click "Use Default Icon" or upload your own SVG
+   - Click "Generate Icons" to download `icon-192x192.png` and `icon-512x512.png`
+   - Place both files in the `public/` directory
+
+4. **Run the development server:**
    ```bash
    npm run dev
    ```
 
-4. Build for production:
+   The app will be available at `http://localhost:3000`
+
+5. **Build for production:**
    ```bash
    npm run build
    ```
 
-5. Preview production build:
-   ```bash
-   npm run preview
-   ```
+   The production build will be in the `dist/` directory.
 
-## Deploy to GitHub
+## 📱 PWA Installation
 
-1. Initialize git repository (if not already):
-   ```bash
-   git init
-   ```
+### Desktop (Chrome/Edge)
+1. Visit your deployed app
+2. Click the install icon in the address bar
+3. Or go to Settings → Apps → Install this site as an app
 
-2. Add all files:
-   ```bash
-   git add .
-   ```
+### Mobile (iOS)
+1. Open the app in Safari
+2. Tap the Share button
+3. Select "Add to Home Screen"
 
-3. Commit your changes:
-   ```bash
-   git commit -m "Initial commit: PWA setup"
-   ```
+### Mobile (Android)
+1. Open the app in Chrome
+2. Tap the menu (three dots)
+3. Select "Add to Home Screen" or "Install App"
 
-4. Create a new repository on GitHub
-
-5. Add your remote and push:
-   ```bash
-   git remote add origin https://github.com/yourusername/your-repo-name.git
-   git branch -M main
-   git push -u origin main
-   ```
-
-## Deploy to Vercel
+## 🚢 Deployment on Vercel
 
 ### Option 1: Deploy via Vercel Dashboard
 
-1. Go to [vercel.com](https://vercel.com) and sign in
-2. Click "New Project"
-3. Import your GitHub repository
-4. Vercel will automatically detect the Vite configuration
-5. Add your environment variables (e.g., `GEMINI_API_KEY`) in the project settings
-6. Click "Deploy"
+1. **Push your code to GitHub:**
+   ```bash
+   git add .
+   git commit -m "Configure PWA for Vercel"
+   git push origin main
+   ```
+
+2. **Import project on Vercel:**
+   - Go to [vercel.com](https://vercel.com)
+   - Click "New Project"
+   - Import your GitHub repository
+   - Vercel will auto-detect Vite settings from `vercel.json`
+
+3. **Configure environment variables:**
+   - In project settings, go to "Environment Variables"
+   - Add `GEMINI_API_KEY` with your API key
+   - Select all environments (Production, Preview, Development)
+
+4. **Deploy:**
+   - Click "Deploy"
+   - Wait for the build to complete
+   - Your app will be live at `https://your-project.vercel.app`
 
 ### Option 2: Deploy via Vercel CLI
 
-1. Install Vercel CLI:
+1. **Install Vercel CLI:**
    ```bash
    npm i -g vercel
    ```
 
-2. Deploy:
+2. **Login to Vercel:**
+   ```bash
+   vercel login
+   ```
+
+3. **Deploy:**
    ```bash
    vercel
    ```
+   
+   Follow the prompts:
+   - Link to existing project or create new
+   - Confirm settings (auto-detected from `vercel.json`)
+   - Add environment variables when prompted
 
-3. Follow the prompts to link your project
+4. **Deploy to production:**
+   ```bash
+   vercel --prod
+   ```
 
 ### Environment Variables
 
-Make sure to add your environment variables in Vercel:
-- Go to your project settings → Environment Variables
-- Add `GEMINI_API_KEY` with your API key value
+The following environment variables are required:
 
-## PWA Features
+| Variable | Description | Required |
+|----------|-------------|----------|
+| `GEMINI_API_KEY` | Your Gemini API key for AI features | Yes |
 
-This app is configured as a Progressive Web App with:
+Set these in:
+- **Local development**: `.env.local` file
+- **Vercel**: Project Settings → Environment Variables
 
-- **Service Worker**: Enables offline functionality and caching
-- **Web App Manifest**: Allows installation on devices with native app-like experience
-- **App Icons**: Automatically generated icons for various devices
-- **Offline Support**: Caches assets for offline access
-- **Install Prompt**: Smart install button that appears when the app can be installed
-- **App Shortcuts**: Quick access to Home, Inbox, and Upload from the app icon
-- **Native Look**: Standalone display mode for a native app experience
-
-### Installing the PWA
-
-The app includes an **Install Button** in the header that automatically appears when installation is available.
-
-**On Mobile:**
-- **iOS Safari**: 
-  - Tap the Install button in the header, or
-  - Tap the Share button (square with arrow) → "Add to Home Screen"
-- **Android Chrome**: 
-  - Tap the Install button in the header, or
-  - Tap the menu → "Add to Home Screen" or "Install App"
-
-**On Desktop:**
-- **Chrome/Edge**: 
-  - Click the Install button in the header, or
-  - Click the install icon in the address bar
-- The app will appear in your applications menu and can be launched like a native app
-- Runs in a standalone window without browser UI for a native experience
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 fanciaga/
-├── components/      # React components
-├── context/         # React context providers
-├── pages/           # Page components
-├── public/          # Static assets (PWA icons, etc.)
-├── App.tsx          # Main app component
-├── index.tsx        # Entry point
-├── vite.config.ts   # Vite configuration with PWA plugin
-└── vercel.json      # Vercel deployment configuration
+├── public/
+│   ├── icon.svg              # Source SVG icon
+│   ├── icon.png              # Existing icon
+│   ├── icon-192x192.png      # PWA icon (192x192) - generate this
+│   ├── icon-512x512.png      # PWA icon (512x512) - generate this
+│   ├── favicon.ico           # Browser favicon
+│   └── generate-icons.html   # Icon generation tool
+├── components/               # React components
+├── context/                  # React context providers
+├── pages/                    # Page components
+├── index.html                # HTML entry point
+├── vite.config.ts            # Vite configuration with PWA plugin
+├── vercel.json               # Vercel deployment configuration
+└── package.json              # Dependencies and scripts
 ```
 
-## Technologies
+## 🛠️ Development
 
-- **React 19** - UI library
-- **Vite 6** - Build tool and dev server
-- **TypeScript** - Type safety
-- **React Router** - Client-side routing
-- **vite-plugin-pwa** - PWA support
-- **Tailwind CSS** - Styling
+### Available Scripts
 
-## License
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
 
-MIT
+### PWA Development
+
+The PWA plugin is configured but disabled in development mode by default. To test PWA features:
+
+1. Build the app: `npm run build`
+2. Preview: `npm run preview`
+3. Test service worker and manifest in browser DevTools
+
+## 📚 Additional Documentation
+
+For detailed deployment instructions, troubleshooting, and PWA configuration, see [DEPLOYMENT.md](./DEPLOYMENT.md).
+
+## 🔧 Troubleshooting
+
+### PWA Icons Not Showing
+- Ensure `icon-192x192.png` and `icon-512x512.png` exist in `public/`
+- Use `public/generate-icons.html` to generate them
+- Clear browser cache and service worker
+
+### Build Errors
+- Run `npm install --legacy-peer-deps` if you encounter peer dependency issues
+- Ensure all environment variables are set
+- Check that `vite-plugin-pwa` is installed
+
+### Service Worker Not Updating
+- Clear browser cache and service worker storage
+- Check browser console for service worker errors
+- Verify `registerType: 'autoUpdate'` in `vite.config.ts`
+
+## 📄 License
+
+This project is private and proprietary.
